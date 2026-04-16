@@ -71,7 +71,7 @@ with col2:
 
         try:
             response = requests.post(
-                "http://127.0.0.1:8000/predict",
+                "https://an-lisis-multimodal-de-registros-m-dicos.onrender.com/predict",
                 json=data
             )
 
