@@ -131,3 +131,6 @@ with col2:
 # -------------------------
 st.divider()
 st.caption("Prototipo académico - Inteligencia Artificial en Salud")
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=10000)
