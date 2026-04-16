@@ -19,7 +19,7 @@ class Paciente(BaseModel):
 def predict(data: Paciente):
 
     # Aquí irá el modelo real
-    probabilidad = 0.82  # simulación
+    probabilidad = 0.33  # simulación
 
     return {
         "probabilidad": probabilidad,
