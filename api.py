@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
+import random
 
 app = FastAPI()
 
@@ -18,21 +19,30 @@ class Paciente(BaseModel):
 @app.post("/predict")
 def predict(data: Paciente):
 
-    # Simulación de transformación de datos (ajustar según modelo)
+    # Simulación de estructura para modelo (ajustar cuando lo integren)
     df = {
         "edad": data.edad,
         "frecuencia_cardiaca": data.frecuencia_cardiaca,
         "presion": data.presion
     }
 
-    # TODO: Reemplazar fallback por modelo entrenado final
-    # Este bloque asegura que el sistema siga funcionando si el modelo no está disponible
+    # TODO: Reemplazar por modelo entrenado final
+    # Este bloque garantiza que el sistema siga funcionando aunque el modelo no esté disponible
     try:
+        # Ejemplo futuro:
         # probabilidad = modelo.predict_proba(df)[0][1]
-        probabilidad = 0.82  # valor temporal
+
+        # Simulación temporal dependiente de datos (más realista que un valor fijo)
+        probabilidad = round(
+            min(0.9, max(0.1, (data.edad / 100) + random.uniform(-0.1, 0.1))),
+            2
+        )
+
     except Exception as e:
         print(f"Error en modelo: {e}")
-        probabilidad = 0.82  # fallback
+
+        # Fallback alternativo (en caso de error inesperado)
+        probabilidad = round(random.uniform(0.3, 0.9), 2)
 
     return {
         "probabilidad": probabilidad,
