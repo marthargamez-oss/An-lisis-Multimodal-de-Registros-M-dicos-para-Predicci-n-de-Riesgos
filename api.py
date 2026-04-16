@@ -19,8 +19,11 @@ class Paciente(BaseModel):
 def predict(data: Paciente):
 
     # Aquí irá el modelo real
-    probabilidad = 0.33  # simulación
-
+    try:
+    probabilidad = modelo.predict_proba(df)[0][1]
+except:
+    probabilidad = 0.82  # fallback temporal
+    
     return {
         "probabilidad": probabilidad,
         "riesgo": "ALTO" if probabilidad > 0.5 else "BAJO"
