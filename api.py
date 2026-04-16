@@ -19,9 +19,12 @@ class Paciente(BaseModel):
 def predict(data: Paciente):
 
     # Aquí irá el modelo real
-    try:
+    # TODO: Reemplazar fallback por modelo entrenado final
+    # Este bloque asegura que el sistema siga funcionando si el modelo no está disponible
+try:
     probabilidad = modelo.predict_proba(df)[0][1]
-except:
+except Exception as e:
+    print(f"Error en modelo: {e}")
     probabilidad = 0.82  # fallback temporal
     
     return {
