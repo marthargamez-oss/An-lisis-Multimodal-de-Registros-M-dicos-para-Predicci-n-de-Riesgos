@@ -4,3 +4,4 @@ uvicorn
 pandas
 matplotlib
 requests
+scikit-learn
